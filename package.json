@@ -1,0 +1,15 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "A web-based To-Do list",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Horne",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^24.9.0",
+    "parcel": "^1.12.3"
+  }
+}
