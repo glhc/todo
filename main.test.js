@@ -1,9 +1,9 @@
 'use strict';
 
-const main = require('./main.js');
-
+const main = require("./main.js");
+ 
 test('Task is successfully created', () => {
-  let testTask = new Task(
+  let testTask = new main.Task(
     'Test task.',
     'This is a long description',
     '11/04/993',

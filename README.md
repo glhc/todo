@@ -1,15 +1,10 @@
-# To-Do
+# To-Do App
 
-## Due Date
 
-21st of September, Your application will be presented.
-If this is good enough, you can always include it in your portfolio
-If the frontend doesn't look good, people will assume all the code sucks so put effort in.
 
-Tuesday:
-Standup in groups
+## Resources
 
-- What you have achieved so far
-- What you are stuck on (blockers)
-- What you hope to get done by end of lesson and by start of next lesson
-- Break into small groups, pair programming
+- [SASS](https://sass-lang.com) for extra css features.
+- [Solarized color scheme](https://ethanschoonover.com/solarized) developed by Ethan Schoonover. SCSS theme code was lifted directly from the site.
+- [jQuery](https://jquery.com/) library for manipulating the DOM.
+- [UUID](https://github.com/kelektiv/node-uuid) JavaScript library. Generates unique IDs so that I can address & identify each task uniquely, even if all the other information is the same.
