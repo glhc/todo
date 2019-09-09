@@ -35,7 +35,24 @@ html * {
     rendering-intent: auto;
 }
 
+/* Other imports */
+
+
 /* Styling section */
 aside {
   display: none;
 }
+
+header {
+  border: 2px solid green;
+}
+
+section {
+  width: 500px;
+  border: 2px solid red;
+}
+
+footer {
+  border: 2px solid blue;
+}
+

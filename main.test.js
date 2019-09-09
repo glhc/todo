@@ -1,6 +1,6 @@
 'use strict';
 
-const main = require("./main.js");
+const main = require("./utils/structure-lib.js");
  
 test('Task is successfully created', () => {
   let testTask = new main.Task(

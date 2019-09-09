@@ -305,7 +305,11 @@ exports.primaryColorMap = {
   green: '#859900'
 };
 exports.htmlSnippets = {
-  taskTemplate: "<div class=task'></div>"
+  taskTemplate: "<li class='task'></div>",
+  taskTitle: "<div class='task-title col-8'>Task Title</div>",
+  taskDeleteButton: "<div class='task-delete-button col-1'>Delete Task</div>",
+  taskUpdateButton: "<div class='task-update-button col-1>Update Task</div>",
+  taskAddButton: "<div class='task-add-button col-1>Add Task</div>"
 };
 },{}],"utils/structure-lib.js":[function(require,module,exports) {
 'use strict';
@@ -326,7 +330,7 @@ var style = require('./style-snippets.js');
  */
 
 
-var Task = function Task(title, description, dueDate, tags) {
+exports.Task = function (title, description, dueDate, tags) {
   var isCompleted = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   var list = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'inbox';
   this.title = title;
@@ -356,7 +360,7 @@ var Task = function Task(title, description, dueDate, tags) {
 */
 
 
-var List = function List(name, color) {
+exports.List = function (name, color) {
   this.name = name;
   this.uuid = uuidGen();
   this.tasks = []; // If list color wasn't selected, pick one from themese at random
@@ -407,24 +411,33 @@ var List = function List(name, color) {
       }
     }
 
-    return "UUID: ".concat(uuid, " not found in list: ").concat(this.name, ".");
+    throw new Error("UUID: ".concat(uuid, " not found in list: ").concat(this.name, "."));
   };
 };
-},{"uuid/v1":"node_modules/uuid/v1.js","./style-snippets.js":"utils/style-snippets.js"}],"main.js":[function(require,module,exports) {
+},{"uuid/v1":"node_modules/uuid/v1.js","./style-snippets.js":"utils/style-snippets.js"}],"utils/utils.js":[function(require,module,exports) {
+'use strict';
+
+exports.arrangeListByDueDate = function () {};
+
+exports.appendtaskWithUuid = function (selector, id) {
+  selector.append("<li class='task-item ".concat(id, "'></li>"));
+};
+},{}],"main.js":[function(require,module,exports) {
 'use strict';
 
 var structure = require('./utils/structure-lib.js');
 
 var style = require('./utils/style-snippets.js');
 
-$('document').ready(function () {
-  var taskArea = $('section');
-  taskArea.append(style.htmlSnippets.taskTemplate);
-  /** Initialize all event listeners. **/
+var utils = require('./utils/utils.js');
 
-  $('');
+$('document').ready(function () {
+  var taskArea = $('.task-list');
+  taskArea.append('<li class="Task">list item 5</li>');
+  taskArea.append('');
+  /** Initialize all event listeners. **/
 });
-},{"./utils/structure-lib.js":"utils/structure-lib.js","./utils/style-snippets.js":"utils/style-snippets.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/structure-lib.js":"utils/structure-lib.js","./utils/style-snippets.js":"utils/style-snippets.js","./utils/utils.js":"utils/utils.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -452,7 +465,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "25860" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34643" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

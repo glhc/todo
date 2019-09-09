@@ -14,7 +14,7 @@ const style = require('./style-snippets.js')
  * @param {String} list - The name of the list which this task belongs to.
  * Defaults to inbox.
  */
-const Task = function (
+exports.Task = function (
       title, description, dueDate, tags, isCompleted = false, list = 'inbox'
       ) {
   this.title = title;
@@ -42,7 +42,7 @@ const Task = function (
 * @param {String} color - The color to be selected, e.g. 'yellow'.
 * Defaults to a random color from primaryColorList.
 */
-const List = function (name, color) {
+exports.List = function (name, color) {
   this.name = name;
   this.uuid = uuidGen();
   this.tasks = [];
@@ -97,6 +97,6 @@ const List = function (name, color) {
       }
     }
     
-    throw new Error()`UUID: ${uuid} not found in list: ${this.name}.`);
+    throw new Error(`UUID: ${uuid} not found in list: ${this.name}.`);
   }
 };

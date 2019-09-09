@@ -14,6 +14,7 @@
   "license": "GPLv3",
   "dependencies": {
     "jest": "^24.9.0",
+    "jquery": "^3.4.1",
     "jsdoc": "^3.6.3",
     "moment": "^2.24.0",
     "parcel": "^1.12.3",
@@ -23,6 +24,8 @@
     "sass": "^1.23.0-module.beta.1"
   },
   "jest": {
-    "setupFiles": ["./source/setup-jest.js"]
+    "setupFiles": [
+      "./source/setup-jest.js"
+    ]
   }
 }
