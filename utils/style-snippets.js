@@ -13,6 +13,6 @@ exports.primaryColorMap = {
 };
 
 exports.htmlSnippets = {
-task: `<div class='task'>Test</div>`
-  
+  taskTemplate: `<div class=task'></div>`, 
+
 };

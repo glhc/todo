@@ -1,6 +1,7 @@
 'use strict';
 
 const uuidGen = require('uuid/v1');
+const style = require('./style-snippets.js')
 
 /**
  * Constructs task objects.
@@ -46,35 +47,56 @@ const List = function (name, color) {
   this.uuid = uuidGen();
   this.tasks = [];
 
-  // If there isn't a color, pick one at random
+  // If list color wasn't selected, pick one from themese at random
   if (!color) {
-    let colorNames = Object.keys(primaryColorMap);
+    let colorNames = Object.keys(style.primaryColorMap);
     randomColorIndex = Math.floor(colorNames.length * Math.random());
     this.color =
-      primaryColorList(randomColorIndex);
+      style.primaryColorList(randomColorIndex);
   } else {
     this.color = color;
   }
+
   this.addTask = function() {
     this.tasks.add(new Task(arguments));
   };
+
   this.deleteTask = function(uuid) {
+    let taskIndex = this.findTaskByUuid(uuid);
+
+    // If a hit was found, then delete that item from the array 
+    if (taskIndex) {
+      console.log(`Deleting item from list...`)
+      let deletedContent = this.tasks.splice(index, 1);
+
+      // Sanity checks
+      if (deletedContent) {
+        console.error(`No items found in list: ${this.name} with ` +
+            `UUID: ${uuid}`);
+      } else if (deletedContent.length > 1) {
+        console.error(`Accidentally deleted ${deletedContent.length} items.`)
+      } else if (deletedContent) {
+        console.log(`Task was deleted from this list. ` +
+        `UUID: ${this.tasks[i].uuid}`);
+      }
+    };
+  };
+
+  this.findTaskByUuid = function(uuid) {
     let index = null;
+
     console.log(`Trying to find log with UUID: ${uuid}`)
     // Find what the index of the task is with the UUID.
     for (let i = 0; i < this.tasks.length; i++) {
       if (this.tasks[i] === uuid) {
         index = i;
+
+        if (index) { // exit the search if a hit is found.
+          return index;
+        }
       }
-    };
-
-    // If a hit was found, then delete that item from the array 
-    if (index) {
-      console.log(`Task was deleted from this list. ` +
-          `UUID: ${this.tasks[i].uuid}`);
-
-      this.tasks = this.tasks.slice(0, index) +
-          this.tasks.slice(index, tasks.length);
-    };
-  };
+    }
+    
+    throw new Error()`UUID: ${uuid} not found in list: ${this.name}.`);
+  }
 };

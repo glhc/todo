@@ -290,10 +290,29 @@ function v1(options, buf, offset) {
 
 module.exports = v1;
 
-},{"./lib/rng":"node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"node_modules/uuid/lib/bytesToUuid.js"}],"utils/structure-lib.js":[function(require,module,exports) {
+},{"./lib/rng":"node_modules/uuid/lib/rng-browser.js","./lib/bytesToUuid":"node_modules/uuid/lib/bytesToUuid.js"}],"utils/style-snippets.js":[function(require,module,exports) {
+'use strict';
+/** Probably move this off to a module later */
+
+exports.primaryColorMap = {
+  yellow: '#b58900',
+  orange: '#cb4b16',
+  red: '#dc322f',
+  magenta: '#d33682',
+  violet: '6c71c4',
+  blue: '#268bd2',
+  cyan: '#2aa198',
+  green: '#859900'
+};
+exports.htmlSnippets = {
+  taskTemplate: "<div class=task'></div>"
+};
+},{}],"utils/structure-lib.js":[function(require,module,exports) {
 'use strict';
 
 var uuidGen = require('uuid/v1');
+
+var style = require('./style-snippets.js');
 /**
  * Constructs task objects.
  * @constructor
@@ -340,12 +359,12 @@ var Task = function Task(title, description, dueDate, tags) {
 var List = function List(name, color) {
   this.name = name;
   this.uuid = uuidGen();
-  this.tasks = []; // If there isn't a color, pick one at random
+  this.tasks = []; // If list color wasn't selected, pick one from themese at random
 
   if (!color) {
-    var colorNames = Object.keys(primaryColorMap);
+    var colorNames = Object.keys(style.primaryColorMap);
     randomColorIndex = Math.floor(colorNames.length * Math.random());
-    this.color = primaryColorList(randomColorIndex);
+    this.color = style.primaryColorList(randomColorIndex);
   } else {
     this.color = color;
   }
@@ -355,54 +374,55 @@ var List = function List(name, color) {
   };
 
   this.deleteTask = function (uuid) {
+    var taskIndex = this.findTaskByUuid(uuid); // If a hit was found, then delete that item from the array 
+
+    if (taskIndex) {
+      console.log("Deleting item from list...");
+      var deletedContent = this.tasks.splice(index, 1); // Sanity checks
+
+      if (deletedContent) {
+        console.error("No items found in list: ".concat(this.name, " with ") + "UUID: ".concat(uuid));
+      } else if (deletedContent.length > 1) {
+        console.error("Accidentally deleted ".concat(deletedContent.length, " items."));
+      } else if (deletedContent) {
+        console.log("Task was deleted from this list. " + "UUID: ".concat(this.tasks[i].uuid));
+      }
+    }
+
+    ;
+  };
+
+  this.findTaskByUuid = function (uuid) {
     var index = null;
     console.log("Trying to find log with UUID: ".concat(uuid)); // Find what the index of the task is with the UUID.
 
     for (var _i = 0; _i < this.tasks.length; _i++) {
       if (this.tasks[_i] === uuid) {
         index = _i;
+
+        if (index) {
+          // exit the search if a hit is found.
+          return index;
+        }
       }
     }
 
-    ; // If a hit was found, then delete that item from the array 
-
-    if (index) {
-      console.log("Task was deleted from this list. " + "UUID: ".concat(this.tasks[i].uuid));
-      this.tasks = this.tasks.slice(0, index) + this.tasks.slice(index, tasks.length);
-    }
-
-    ;
+    return "UUID: ".concat(uuid, " not found in list: ").concat(this.name, ".");
   };
 };
-},{"uuid/v1":"node_modules/uuid/v1.js"}],"utils/style-snippets.js":[function(require,module,exports) {
-'use strict';
-/** Probably move this off to a module later */
-
-exports.primaryColorMap = {
-  yellow: '#b58900',
-  orange: '#cb4b16',
-  red: '#dc322f',
-  magenta: '#d33682',
-  violet: '6c71c4',
-  blue: '#268bd2',
-  cyan: '#2aa198',
-  green: '#859900'
-};
-exports.htmlSnippets = {
-  task: "<div class='task'>Test</div>"
-};
-},{}],"main.js":[function(require,module,exports) {
+},{"uuid/v1":"node_modules/uuid/v1.js","./style-snippets.js":"utils/style-snippets.js"}],"main.js":[function(require,module,exports) {
 'use strict';
 
 var structure = require('./utils/structure-lib.js');
 
 var style = require('./utils/style-snippets.js');
 
-var taskArea = $('section');
-taskArea.append(style.htmlSnippets.task);
-var testButton = $('button').eq(0);
-testButton.click(function () {
-  testButton.fadeToggle();
+$('document').ready(function () {
+  var taskArea = $('section');
+  taskArea.append(style.htmlSnippets.taskTemplate);
+  /** Initialize all event listeners. **/
+
+  $('');
 });
 },{"./utils/structure-lib.js":"utils/structure-lib.js","./utils/style-snippets.js":"utils/style-snippets.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -432,7 +452,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37459" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "25860" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

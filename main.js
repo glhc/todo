@@ -3,12 +3,11 @@
 const structure = require('./utils/structure-lib.js');
 const style = require('./utils/style-snippets.js');
 
-let taskArea = $('section')
+$('document').ready(function() {
+  let taskArea = $('section');
+  taskArea.append(style.htmlSnippets.taskTemplate);
 
-taskArea.append(style.htmlSnippets.task);
+  /** Initialize all event listeners. **/
+  $('')
 
-let testButton = $('button').eq(0);
-testButton.click(function() {
-  testButton.fadeToggle();
 });
-
