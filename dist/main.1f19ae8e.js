@@ -503,7 +503,8 @@ exports.primaryColorMap = {
 exports.htmlSnippets = {
   taskTemplate: "<li class='task'></div>",
   taskTitle: "<div class='task-title col-8'>Task Title</div>",
-  taskDeleteButton: "<div class='task-delete-button col-1'>Delete Task</div>",
+  taskDeleteButton: "<button class='col-1 material-icons' id='task-delete-button'>delete</button>",
+  taskEditButton: "<button class='col-1 material-icons' id='task-edit-button'>edit</button>",
   taskUpdateButton: "<div class='task-update-button col-1>Update Task</div>",
   taskAddButton: "<div class='task-add-button col-1>Add Task</div>"
 };
@@ -621,8 +622,20 @@ exports.arrangeListByDueDate = function () {};
 
 exports.appendTask = function (selector, task) {
   selector.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
-  $("#".concat(task.uuid)).text(task.title).append(style.htmlSnippets.taskAddButton);
-  $("".concat(task.uuid));
+  $("#".concat(task.uuid)).text(task.title); // put text into task element
+
+  $("#".concat(task.uuid)).append(style.htmlSnippets.taskEditButton); // add edit button
+
+  $("#".concat(task.uuid)).append(style.htmlSnippets.taskDeleteButton); // add delete button
+
+  $("#".concat(task.uuid, " #task-edit-button")).on('click', function () {
+    // Add edit button click listener
+    $("#".concat(task.uuid)).remove();
+  });
+  $("#".concat(task.uuid, " #task-delete-button")).on('click', function () {
+    // Add delete button click listener
+    $("#".concat(task.uuid)).remove();
+  });
 };
 /**
  * When triggered, get the value in the input field.
@@ -702,7 +715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1128" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42293" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

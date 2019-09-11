@@ -58,4 +58,16 @@ footer {
   text-align: center;
 }
 
+#task-delete-button {
+  background-color: transparent;
+  border-style: none;
+  border-color: none;
+}
+
+#task-edit-button {
+  background-color: transparent;
+  border-style: none;
+  border-color: none;
+}
+
 /*# sourceMappingURL=/style.97fcb138.css.map */

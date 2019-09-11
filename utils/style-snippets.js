@@ -15,8 +15,8 @@ exports.primaryColorMap = {
 exports.htmlSnippets = {
   taskTemplate: `<li class='task'></div>`,
   taskTitle: `<div class='task-title col-8'>Task Title</div>`,
-  taskDeleteButton: `<div class='task-delete-button col-1'>Delete Task</div>`,
+  taskDeleteButton: `<button class='col-1 material-icons' id='task-delete-button'>delete</button>`,
+  taskEditButton: `<button class='col-1 material-icons' id='task-edit-button'>edit</button>`,
   taskUpdateButton: `<div class='task-update-button col-1>Update Task</div>`,
   taskAddButton: `<div class='task-add-button col-1>Add Task</div>`,
 };
-

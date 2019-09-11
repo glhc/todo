@@ -44,5 +44,4 @@ $('document').ready(function () {
     utils.appendTask($('.task-list'), createdTask);
 
   });
-
 });
