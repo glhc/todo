@@ -19,3 +19,4 @@ exports.htmlSnippets = {
   taskUpdateButton: `<div class='task-update-button col-1>Update Task</div>`,
   taskAddButton: `<div class='task-add-button col-1>Add Task</div>`,
 };
+

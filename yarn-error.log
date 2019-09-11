@@ -1,0 +1,56 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files (x86)\VMware\VMware vSphere CLI\Perl\site\bin;C:\Program Files (x86)\VMware\VMware vSphere CLI\Perl\bin;C:\Python27\;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\PuTTY\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Calibre2\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Cyberduck CLI\;C:\Program Files\nodejs\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Yarn\bin\;C:\Users\patrick.horne\AppData\Local\Microsoft\WindowsApps;C:\Users\patrick.horne\AppData\Local\GitHubDesktop\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\patrick.horne\AppData\Roaming\Dashlane\6.4.0.12512\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\patrick.horne\AppData\Roaming\Dashlane\6.4.0.12512\ucrt;C:\Users\patrick.horne\AppData\Roaming\Dashlane\6.4.0.12512\bin\Qt;C:\Users\patrick.horne\AppData\Roaming\Dashlane\6.4.0.12512\bin\Ssl;C:\Users\patrick.horne\AppData\Local\atom\bin;C:\Users\patrick.horne\AppData\Roaming\npm;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Nmap;C:\Users\patrick.horne\AppData\Local\Microsoft\WindowsApps;C:\tools\neovim\Neovim\bin;C:\Users\patrick.horne\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  11.13.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\patrick.horne\code\projects\project-0\node_modules\.staging\abbrev-517e60dc'
+
+npm manifest: 
+  {
+    "name": "todo",
+    "version": "1.0.0",
+    "description": "A web-based To-Do list",
+    "main": "index.html",
+    "scripts": {
+      "test": "test"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/glhc/todo.git"
+    },
+    "author": "Patrick Horne",
+    "license": "GPLv3",
+    "dependencies": {
+      "jest": "^24.9.0",
+      "jquery": "^3.4.1",
+      "jsdoc": "^3.6.3",
+      "moment": "^2.24.0",
+      "parcel": "^1.12.3",
+      "uuid": "^3.3.3"
+    },
+    "devDependencies": {
+      "sass": "^1.23.0-module.beta.1"
+    },
+    "jest": {
+      "setupFiles": [
+        "./source/setup-jest.js"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

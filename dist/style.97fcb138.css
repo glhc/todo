@@ -42,16 +42,20 @@ aside {
 }
 
 header {
-  border: 2px solid green;
+  border: 2px solid;
 }
 
 section {
   width: 500px;
-  border: 2px solid red;
+  border: 2px solid;
 }
 
 footer {
-  border: 2px solid blue;
+  border: 2px solid;
+}
+
+#list-name {
+  text-align: center;
 }
 
 /*# sourceMappingURL=/style.97fcb138.css.map */

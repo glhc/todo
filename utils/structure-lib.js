@@ -1,6 +1,6 @@
 'use strict';
 
-const uuidGen = require('uuid/v1');
+const shortid = require('shortid');
 const style = require('./style-snippets.js')
 
 /**
@@ -15,14 +15,14 @@ const style = require('./style-snippets.js')
  * Defaults to inbox.
  */
 exports.Task = function (
-      title, description, dueDate, tags, isCompleted = false, list = 'inbox'
+      title, description,/* dueDate,*/ tags, isCompleted = false, list = 'inbox'
       ) {
   this.title = title;
-  this.uuid = uuidGen();
+  this.uuid = shortid.generate();
   this.description = description;
   this.list = list;
   this.tags = tags;
-  this.dueDate = moment(dueDate);
+  // this.dueDate = moment(dueDate);
   this.isCompleted = isCompleted;
   this.comments = [];
   this.update = function(
@@ -58,7 +58,7 @@ exports.List = function (name, color) {
   }
 
   this.addTask = function() {
-    this.tasks.add(new Task(arguments));
+    this.tasks.add(new Task());
   };
 
   this.deleteTask = function(uuid) {
