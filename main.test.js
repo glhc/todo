@@ -15,3 +15,5 @@ test('Task is successfully created', () => {
   
   expect(testTask.title).toBe('Test task.');
 });
+
+test()

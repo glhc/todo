@@ -24,15 +24,17 @@ $green:     #859900;
     a, a:active, a:visited { color: $rebase1; }
 }
 @mixin accentize($accent) {
-    a, a:active, a:visited, code.url { color: $accent; }
+    a, a:active, a:visited, code.url, { color: $accent; }
     h1,h2,h3,h4,h5,h6 {color:$accent}
 }
 /* light is default mode, so pair with general html definition */
-html, .dark  { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
-.light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
-html * {
-    color-profile: sRGB;
-    rendering-intent: auto;
+html, .dark, { 
+  @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3);
+  @include accentize($magenta);
+}
+
+.light {
+  @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)
 }
 
 /* Other imports */
@@ -40,11 +42,15 @@ html * {
 
 /* Styling section */
 aside {
-  display: none;
+  float: left;
+  border: 2px solid $magenta;
 }
 
 header {
   border: 2px solid;
+  display: flex;
+  align-self: center;
+  text-align: center;
 } 
 
 section {
@@ -56,7 +62,17 @@ footer {
   border: 2px solid;
 }
 
+.btn {color: $base01}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
+    color: $orange;
+    background-color: $blue;
+    border-color: $blue/*set the color you want here*/
+}
+
 #list-name {
+  display: flex;
+  align-self: center;
   text-align: center;
 }
 

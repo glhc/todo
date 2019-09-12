@@ -13,22 +13,11 @@
   <link rel="stylesheet" href="style.scss" type="text/css" />
   <!-- <link rel="stylesheet" type="text/css"
     href="/node_modules/bootstrap-solarized-theme/dist/css/solarized-dark-theme.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <title>To-Do</title>
 </head>
 
-<body class="dark red">
-  <header class="container">
-    <nav class="row">
-      <button class="btn col-1 material-icons" id="menu-button">menu</button>
-      <h6 class="col-3" id="list-name">List Name</h6>
-        <div class="form-group col-6">
-          <input class="form-control" type="text" required="true" id="add-task-input" placeholder="Enter task here"></input>
-        </div>
-      <button class="btn col-1 material-icons" id="add-task-button">add</button>
-      <button class="btn material-icons col-1" id="search-button">search</button>
-    </nav>
-  </header>
+<body class="dark">
 
   <!-- The sidebar containing lists, views, etc.-->
   <!-- This will start hidden -->
@@ -39,6 +28,21 @@
     <div class="row">Lists</div>
     <div class="row">Collecting Dust</div>
   </aside>
+
+  <header class="container">
+    <nav class="row">
+      <button class="btn col-1 material-icons" id="menu-button">menu</button>
+      <h6 class="col-3" id="list-name">List Name</h6>
+      <div class="form-group col-6">
+        <input class="form-control" type="text" required="true" id="add-task-input"
+          placeholder="Enter task here"></input>
+      </div>
+      <button class="btn col-1 material-icons" id="add-task-button">add</button>
+      <button class="btn material-icons col-1" id="search-button">search</button>
+    </nav>
+  </header>
+
+
 
   <!-- This is the main content element-->
   <section class="container" id="task-area">

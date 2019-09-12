@@ -14,6 +14,12 @@ html h1, html h2, html h3, html h4, html h5, html h6, .dark h1, .dark h2, .dark 
 html a, html a:active, html a:visited, .dark a, .dark a:active, .dark a:visited {
   color: #93a1a1;
 }
+html a, html a:active, html a:visited, html code.url, .dark a, .dark a:active, .dark a:visited, .dark code.url {
+  color: #d33682;
+}
+html h1, html h2, html h3, html h4, html h5, html h6, .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #d33682;
+}
 
 .light {
   background-color: #fdf6e3;
@@ -30,19 +36,18 @@ html a, html a:active, html a:visited, .dark a, .dark a:active, .dark a:visited 
   color: #586e75;
 }
 
-html * {
-  color-profile: sRGB;
-  rendering-intent: auto;
-}
-
 /* Other imports */
 /* Styling section */
 aside {
-  display: none;
+  float: left;
+  border: 2px solid #d33682;
 }
 
 header {
   border: 2px solid;
+  display: flex;
+  align-self: center;
+  text-align: center;
 }
 
 section {
@@ -54,7 +59,19 @@ footer {
   border: 2px solid;
 }
 
+.btn {
+  color: #586e75;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open > .dropdown-toggle.btn {
+  color: #cb4b16;
+  background-color: #268bd2;
+  border-color: #268bd2;
+}
+
 #list-name {
+  display: flex;
+  align-self: center;
   text-align: center;
 }
 
