@@ -506,7 +506,8 @@ exports.htmlSnippets = {
   taskDeleteButton: "<button class='col-1 material-icons' id='task-delete-button'>delete</button>",
   taskEditButton: "<button class='col-1 material-icons' id='task-edit-button'>edit</button>",
   taskUpdateButton: "<div class='task-update-button col-1>Update Task</div>",
-  taskAddButton: "<div class='task-add-button col-1>Add Task</div>"
+  taskAddButton: "<div class='task-add-button col-1>Add Task</div>",
+  taskEditSearchBar: "<input class=\"form-control col-10 d-inline\" type=\"text\" required=\"true\" id=\"edit-task-input\" placeholder=\"New description goes here\">"
 };
 },{}],"utils/structure-lib.js":[function(require,module,exports) {
 'use strict';
@@ -622,7 +623,7 @@ exports.arrangeListByDueDate = function () {};
 
 exports.appendTask = function (selector, task) {
   selector.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
-  $("#".concat(task.uuid)).text(task.title); // put text into task element
+  $("#".concat(task.uuid)).append("<div class=\"task-title col-10 d-inline\">".concat(task.title, "</div>")); // put text into task element
 
   $("#".concat(task.uuid)).append(style.htmlSnippets.taskEditButton); // add edit button
 
@@ -630,12 +631,25 @@ exports.appendTask = function (selector, task) {
 
   $("#".concat(task.uuid, " #task-edit-button")).on('click', function () {
     // Add edit button click listener
-    $("#".concat(task.uuid)).remove();
+    var removedStuff = $("#".concat(task.uuid, " .task-title")).replaceWith(style.htmlSnippets.taskEditSearchBar);
+    $("#".concat(task.uuid, " #edit-task-input")).on('keyup', function (e) {
+      console.log('keyup detected');
+
+      if (e.keyCode === 13) {
+        console.log('enter detected.');
+        task.title = $("#".concat(task.uuid, " #edit-task-input")).val();
+        $("#".concat(task.uuid, " #edit-task-input")).replaceWith("<div class=\"task-title col-10 d-inline\">".concat(task.title, "</div>"));
+      }
+    });
   });
   $("#".concat(task.uuid, " #task-delete-button")).on('click', function () {
     // Add delete button click listener
     $("#".concat(task.uuid)).remove();
   });
+};
+
+exports.editTask = function (selector, task) {
+  $("#".concat(task.uuid)).html(style.htmlSnippets.taskEditSearchBar);
 };
 /**
  * When triggered, get the value in the input field.
@@ -715,7 +729,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42293" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "27660" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

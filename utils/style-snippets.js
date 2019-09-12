@@ -19,4 +19,5 @@ exports.htmlSnippets = {
   taskEditButton: `<button class='col-1 material-icons' id='task-edit-button'>edit</button>`,
   taskUpdateButton: `<div class='task-update-button col-1>Update Task</div>`,
   taskAddButton: `<div class='task-add-button col-1>Add Task</div>`,
+  taskEditSearchBar: `<input class="form-control col-10 d-inline" type="text" required="true" id="edit-task-input" placeholder="New description goes here">`,
 };
