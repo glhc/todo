@@ -28,7 +28,7 @@ $('document').ready(function () {
 
       $('#add-task-input').val(''); // clear input field after enter
       utils.appendTask($('.task-list'), createdTask);
-    }
+    } 
   });
 
   $('#add-task-button').on('click', function () {

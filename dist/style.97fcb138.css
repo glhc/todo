@@ -41,6 +41,11 @@ html h1, html h2, html h3, html h4, html h5, html h6, .dark h1, .dark h2, .dark 
 aside {
   float: left;
   border: 2px solid #d33682;
+  position: absolute;
+  height: 100%;
+  z-index: 5;
+  width: 35%;
+  background-color: #839496;
 }
 
 header {
