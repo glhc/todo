@@ -39,6 +39,7 @@ html h1, html h2, html h3, html h4, html h5, html h6, .dark h1, .dark h2, .dark 
 /* Other imports */
 /* Styling section */
 aside {
+  display: none;
   float: left;
   border: 2px solid #d33682;
   position: absolute;
