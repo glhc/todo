@@ -2,8 +2,6 @@
 
 const style = require('./style-snippets.js')
 
-exports.arrangeListByDueDate = function() {};
-
 exports.appendTask = function(selector, task) {
   selector.append(`<li class='task-item' id='${task.uuid}'></li>`);
   $(`#${task.uuid}`).append(`<div class="task-title col-10 d-inline">${task.title}</div>`); // put text into task element
@@ -31,11 +29,4 @@ exports.appendTask = function(selector, task) {
 
 exports.editTask = function(selector, task) {
   $(`#${task.uuid}`).html(style.htmlSnippets.taskEditSearchBar);
-}
-
-/**
- * When triggered, get the value in the input field.
- */
-exports.getTaskTitleFromInput = function() {
-  return $('#add-task-input').val()
 }

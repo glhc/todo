@@ -3,10 +3,11 @@
 ## Tasks to complete
 
 To unlock firebase class, by tuesday:
-  - Get a wireframe of the __final__ design
-  - get core functionality working
-  - get stylings
-  - get themes
+
+- Get a wireframe of the final design
+- get core functionality working
+- get stylings
+- get themes
 
 ## Project Overview
 

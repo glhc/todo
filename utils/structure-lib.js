@@ -14,25 +14,11 @@ const style = require('./style-snippets.js')
  * @param {String} list - The name of the list which this task belongs to.
  * Defaults to inbox.
  */
-exports.Task = function (
-      title, description,/* dueDate,*/ tags, isCompleted = false, list = 'inbox'
-      ) {
+exports.Task = function (title) {
   this.title = title;
   this.uuid = shortid.generate();
-  this.description = description;
-  this.list = list;
-  this.tags = tags;
-  // this.dueDate = moment(dueDate);
-  this.isCompleted = isCompleted;
-  this.comments = [];
-  this.update = function(
-      title, descriptions, dueDate, tags, isCompleted = false, list
-      ) {
-  };
-  this.Comment = function (message) {
-    this.message = message;
-  }
 };
+
 
 
 /**
@@ -79,24 +65,6 @@ exports.List = function (name, color) {
         console.log(`Task was deleted from this list. ` +
         `UUID: ${this.tasks[i].uuid}`);
       }
-    };
-  };
-
-  this.findTaskByUuid = function(uuid) {
-    let index = null;
-
-    console.log(`Trying to find log with UUID: ${uuid}`)
-    // Find what the index of the task is with the UUID.
-    for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i] === uuid) {
-        index = i;
-
-        if (index) { // exit the search if a hit is found.
-          return index;
-        }
-      }
     }
-    
-    throw new Error(`UUID: ${uuid} not found in list: ${this.name}.`);
   }
-};
+}

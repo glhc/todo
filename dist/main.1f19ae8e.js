@@ -528,28 +528,9 @@ var style = require('./style-snippets.js');
  */
 
 
-exports.Task = function (title, description,
-/* dueDate,*/
-tags) {
-  var isCompleted = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  var list = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'inbox';
+exports.Task = function (title) {
   this.title = title;
   this.uuid = shortid.generate();
-  this.description = description;
-  this.list = list;
-  this.tags = tags; // this.dueDate = moment(dueDate);
-
-  this.isCompleted = isCompleted;
-  this.comments = [];
-
-  this.update = function (title, descriptions, dueDate, tags) {
-    var isCompleted = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    var list = arguments.length > 5 ? arguments[5] : undefined;
-  };
-
-  this.Comment = function (message) {
-    this.message = message;
-  };
 };
 /**
 * Creates a To-Do list.
@@ -592,34 +573,12 @@ exports.List = function (name, color) {
         console.log("Task was deleted from this list. " + "UUID: ".concat(this.tasks[i].uuid));
       }
     }
-
-    ;
-  };
-
-  this.findTaskByUuid = function (uuid) {
-    var index = null;
-    console.log("Trying to find log with UUID: ".concat(uuid)); // Find what the index of the task is with the UUID.
-
-    for (var _i = 0; _i < this.tasks.length; _i++) {
-      if (this.tasks[_i] === uuid) {
-        index = _i;
-
-        if (index) {
-          // exit the search if a hit is found.
-          return index;
-        }
-      }
-    }
-
-    throw new Error("UUID: ".concat(uuid, " not found in list: ").concat(this.name, "."));
   };
 };
 },{"shortid":"node_modules/shortid/index.js","./style-snippets.js":"utils/style-snippets.js"}],"utils/utils.js":[function(require,module,exports) {
 'use strict';
 
 var style = require('./style-snippets.js');
-
-exports.arrangeListByDueDate = function () {};
 
 exports.appendTask = function (selector, task) {
   selector.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
@@ -650,14 +609,6 @@ exports.appendTask = function (selector, task) {
 
 exports.editTask = function (selector, task) {
   $("#".concat(task.uuid)).html(style.htmlSnippets.taskEditSearchBar);
-};
-/**
- * When triggered, get the value in the input field.
- */
-
-
-exports.getTaskTitleFromInput = function () {
-  return $('#add-task-input').val();
 };
 },{"./style-snippets.js":"utils/style-snippets.js"}],"main.js":[function(require,module,exports) {
 'use strict';
@@ -729,7 +680,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13566" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "15655" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
