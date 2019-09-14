@@ -1,8 +1,8 @@
 'use strict';
 
-const style = require('./style-snippets.js')
+const style = require('./html-templates.js')
 
-exports.appendTask = function(selector, task) {
+export const appendTask = function(selector, task) {
   selector.append(`<li class='task-item' id='${task.uuid}'></li>`);
   $(`#${task.uuid}`).append(`<div class="task-title col-10 d-inline">${task.title}</div>`); // put text into task element
   
@@ -27,6 +27,6 @@ exports.appendTask = function(selector, task) {
   });
 }
 
-exports.editTask = function(selector, task) {
+export const editTask = function(selector, task) {
   $(`#${task.uuid}`).html(style.htmlSnippets.taskEditSearchBar);
 }

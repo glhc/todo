@@ -17,23 +17,21 @@
 <script src="/style.97fcb138.js"></script></head>
 
 <body class="dark">
+    <aside>
+        <button class="btn material-icons col-1" id="menu-button">menu</button>
+        <div>Landing Pad</div>
+        <div>Next 7 Days</div>
+        <div>Lists</div>
+        <div>Collecting Dust</div>
+      </aside>
 
-  <!-- The sidebar containing lists, views, etc.-->
-  <!-- This will start hidden -->
-  <aside class="container zindex-fixed">
-    <div class="row">Landing Pad</div>
-    <div class="row">Next 7 Days</div>
-    <!-- This will expand-down upon click to show lists -->
-    <div class="row">Lists</div>
-    <div class="row">Collecting Dust</div>
-  </aside>
 
   <header class="container">
     <nav class="row">
-      <button class="btn col-1 material-icons" id="menu-button">menu</button>
+      <button class="btn material-icons col-1" id="the-menu-button">menu</button>
       <h6 class="col-3" id="list-name">List Name</h6>
-      <div class="form-group col-6">
-        <input class="form-control" type="text" required="true" id="add-task-input" placeholder="Enter task here">
+      <div class="col-5">
+        <input type="text" minlength="1" id="add-task-input" placeholder="Enter task here">
       </div>
       <button class="btn col-1 material-icons" id="add-task-button">add</button>
       <button class="btn material-icons col-1" id="search-button">search</button>
@@ -47,12 +45,6 @@
     <ul class="task-list"></ul>
   </section>
 
-
-  <footer class="container">
-    <div>footer</div>
-  </footer>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="/main.1f19ae8e.js"></script>
 </body>

@@ -1,7 +1,7 @@
 'use strict';
 
 const shortid = require('shortid');
-const style = require('./style-snippets.js')
+const style = require('./html-templates.js')
 
 /**
  * Constructs task objects.
@@ -14,7 +14,7 @@ const style = require('./style-snippets.js')
  * @param {String} list - The name of the list which this task belongs to.
  * Defaults to inbox.
  */
-exports.Task = function (title) {
+export const Task = function (title) {
   this.title = title;
   this.uuid = shortid.generate();
 };
@@ -28,9 +28,9 @@ exports.Task = function (title) {
 * @param {String} color - The color to be selected, e.g. 'yellow'.
 * Defaults to a random color from primaryColorList.
 */
-exports.List = function (name, color) {
+export const List = function (name, color) {
   this.name = name;
-  this.uuid = uuidGen();
+  this.uuid = shortid.generate();
   this.tasks = [];
 
   // If list color wasn't selected, pick one from themese at random

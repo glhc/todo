@@ -1,30 +1,35 @@
 'use strict';
 
-const structure = require('./utils/structure-lib.js');
-const style = require('./utils/style-snippets.js');
+const structure = require('./utils/constructors.js');
+const style = require('./utils/html-templates.js');
 const utils = require('./utils/utils.js');
 
 $('document').ready(function () {
   let testTask = new structure.Task(
-    'This task was created using jQuery.', // title
+    'This task is a sample To-Do item.', // title
     'This is a long description of a test task.', // description
   );
 
   utils.appendTask($('.task-list'), testTask);
+  initializePage();
+  
 
-  // Add task listener
+})
+
+
+/**
+ * Wires up all buttons to actions, initializes all listeners that should be 
+ * active at page load.
+ */
+function initializePage() {
+
+
+
+  // Add listener for submittal of changed task title.
   $('#add-task-input').on('keyup', function (e) {
-    console.log(`keyup detected in task title add field.`);
     if (e.keyCode === 13) {
-      console.log('keyup: Enter detected.')
-
       let title = $('#add-task-input').val();
-      console.log('title:');
-      console.log(title);
-
       let createdTask = new structure.Task(title);
-      console.log('createdTask:')
-      console.log(createdTask);
 
       $('#add-task-input').val(''); // clear input field after enter
       utils.appendTask($('.task-list'), createdTask);
@@ -44,4 +49,18 @@ $('document').ready(function () {
     utils.appendTask($('.task-list'), createdTask);
   });
 
-});
+  listenForMenuButton();
+}
+
+/**
+ * Listens for the menu button click and modifies the page accordingly.
+ */
+function listenForMenuButton() {
+  $('#menu-button').click(function() {
+    $('aside').toggleClass('active');
+  });
+
+  $('#the-menu-button').click(function() {
+    $('aside').toggleClass('active');
+  });
+}

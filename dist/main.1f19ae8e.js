@@ -486,11 +486,15 @@ module.exports.isValid = isValid;
 'use strict';
 module.exports = require('./lib/index');
 
-},{"./lib/index":"node_modules/shortid/lib/index.js"}],"utils/style-snippets.js":[function(require,module,exports) {
+},{"./lib/index":"node_modules/shortid/lib/index.js"}],"utils/html-templates.js":[function(require,module,exports) {
 'use strict';
 /** Probably move this off to a module later */
 
-exports.primaryColorMap = {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.htmlSnippets = exports.primaryColorMap = void 0;
+var primaryColorMap = {
   yellow: '#b58900',
   orange: '#cb4b16',
   red: '#dc322f',
@@ -500,21 +504,28 @@ exports.primaryColorMap = {
   cyan: '#2aa198',
   green: '#859900'
 };
-exports.htmlSnippets = {
+exports.primaryColorMap = primaryColorMap;
+var htmlSnippets = {
   taskTemplate: "<li class='task'></div>",
   taskTitle: "<div class='task-title col-8'>Task Title</div>",
   taskDeleteButton: "<button class='btn col-1 material-icons' id='task-delete-button'>delete</button>",
   taskEditButton: "<button class='btn col-1 material-icons' id='task-edit-button'>edit</button>",
   taskUpdateButton: "<button class='btn task-update-button col-1>Update Task</button>",
   taskAddButton: "<div class='task-add-button col-1>Add Task</div>",
-  taskEditSearchBar: "<input class=\"form-control col-10 d-inline\" type=\"text\" required=\"true\" id=\"edit-task-input\" placeholder=\"New description goes here\">"
+  taskEditSearchBar: "<input class=\"col-10 d-inline\" type=\"text\" minlength=\"1\" id=\"edit-task-input\" placeholder=\"New description goes here\">"
 };
-},{}],"utils/structure-lib.js":[function(require,module,exports) {
+exports.htmlSnippets = htmlSnippets;
+},{}],"utils/constructors.js":[function(require,module,exports) {
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.List = exports.Task = void 0;
 
 var shortid = require('shortid');
 
-var style = require('./style-snippets.js');
+var style = require('./html-templates.js');
 /**
  * Constructs task objects.
  * @constructor
@@ -528,7 +539,7 @@ var style = require('./style-snippets.js');
  */
 
 
-exports.Task = function (title) {
+var Task = function Task(title) {
   this.title = title;
   this.uuid = shortid.generate();
 };
@@ -541,9 +552,11 @@ exports.Task = function (title) {
 */
 
 
-exports.List = function (name, color) {
+exports.Task = Task;
+
+var List = function List(name, color) {
   this.name = name;
-  this.uuid = uuidGen();
+  this.uuid = shortid.generate();
   this.tasks = []; // If list color wasn't selected, pick one from themese at random
 
   if (!color) {
@@ -575,12 +588,19 @@ exports.List = function (name, color) {
     }
   };
 };
-},{"shortid":"node_modules/shortid/index.js","./style-snippets.js":"utils/style-snippets.js"}],"utils/utils.js":[function(require,module,exports) {
+
+exports.List = List;
+},{"shortid":"node_modules/shortid/index.js","./html-templates.js":"utils/html-templates.js"}],"utils/utils.js":[function(require,module,exports) {
 'use strict';
 
-var style = require('./style-snippets.js');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.editTask = exports.appendTask = void 0;
 
-exports.appendTask = function (selector, task) {
+var style = require('./html-templates.js');
+
+var appendTask = function appendTask(selector, task) {
   selector.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
   $("#".concat(task.uuid)).append("<div class=\"task-title col-10 d-inline\">".concat(task.title, "</div>")); // put text into task element
 
@@ -607,34 +627,39 @@ exports.appendTask = function (selector, task) {
   });
 };
 
-exports.editTask = function (selector, task) {
+exports.appendTask = appendTask;
+
+var editTask = function editTask(selector, task) {
   $("#".concat(task.uuid)).html(style.htmlSnippets.taskEditSearchBar);
 };
-},{"./style-snippets.js":"utils/style-snippets.js"}],"main.js":[function(require,module,exports) {
+
+exports.editTask = editTask;
+},{"./html-templates.js":"utils/html-templates.js"}],"main.js":[function(require,module,exports) {
 'use strict';
 
-var structure = require('./utils/structure-lib.js');
+var structure = require('./utils/constructors.js');
 
-var style = require('./utils/style-snippets.js');
+var style = require('./utils/html-templates.js');
 
 var utils = require('./utils/utils.js');
 
 $('document').ready(function () {
-  var testTask = new structure.Task('This task was created using jQuery.', // title
+  var testTask = new structure.Task('This task is a sample To-Do item.', // title
   'This is a long description of a test task.');
-  utils.appendTask($('.task-list'), testTask); // Add task listener
+  utils.appendTask($('.task-list'), testTask);
+  initializePage();
+});
+/**
+ * Wires up all buttons to actions, initializes all listeners that should be 
+ * active at page load.
+ */
 
+function initializePage() {
+  // Add listener for submittal of changed task title.
   $('#add-task-input').on('keyup', function (e) {
-    console.log("keyup detected in task title add field.");
-
     if (e.keyCode === 13) {
-      console.log('keyup: Enter detected.');
       var title = $('#add-task-input').val();
-      console.log('title:');
-      console.log(title);
       var createdTask = new structure.Task(title);
-      console.log('createdTask:');
-      console.log(createdTask);
       $('#add-task-input').val(''); // clear input field after enter
 
       utils.appendTask($('.task-list'), createdTask);
@@ -651,8 +676,22 @@ $('document').ready(function () {
 
     utils.appendTask($('.task-list'), createdTask);
   });
-});
-},{"./utils/structure-lib.js":"utils/structure-lib.js","./utils/style-snippets.js":"utils/style-snippets.js","./utils/utils.js":"utils/utils.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  listenForMenuButton();
+}
+/**
+ * Listens for the menu button click and modifies the page accordingly.
+ */
+
+
+function listenForMenuButton() {
+  $('#menu-button').click(function () {
+    $('aside').toggleClass('active');
+  });
+  $('#the-menu-button').click(function () {
+    $('aside').toggleClass('active');
+  });
+}
+},{"./utils/constructors.js":"utils/constructors.js","./utils/html-templates.js":"utils/html-templates.js","./utils/utils.js":"utils/utils.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -680,7 +719,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "15655" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "19008" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
