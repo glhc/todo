@@ -57,10 +57,12 @@ function initializePage() {
  */
 function listenForMenuButton() {
   $('#menu-button').click(function() {
-    $('aside').toggleClass('active');
+    $('aside').toggleClass('pushed');
+    $('.wrapper').toggleClass('pushed');
   });
 
-  $('#the-menu-button').click(function() {
-    $('aside').toggleClass('active');
+  $('#aside-menu-button').click(function() {
+    $('aside').toggleClass('pushed');
+    $('.wrapper').toggleClass('pushed');
   });
 }
