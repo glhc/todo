@@ -46,7 +46,6 @@ html, .dark {
 
 html {
   height: 100%;
-  padding-left: 0 ;
 }
 
 body {
@@ -58,7 +57,6 @@ body {
 /* Aside */
 aside.pushed {
   width: 30%;
-  transition: width 2s;
 }
 
 aside {
@@ -70,7 +68,7 @@ aside {
   justify-content: flex-start;
   width: 0%;
   background-color: $base03;
-  transition: width 2s;
+  transition: width 1s;
   background-color: $base02;
   overflow: hidden;
 }
@@ -80,7 +78,6 @@ aside {
   display:none;
   align-self: flex-end;
   margin-right: 1.2rem;
-  z-index: 3000;
 }
 
 aside > #aside-link-spacer {
@@ -109,6 +106,13 @@ aside > div {
   width: 100rem;
 }
 
+#inline-icon {
+  
+  vertical-align: middle;
+  align-self: right;
+  font-size: 36px;
+}
+
 /* Wrapper */
 .wrapper {
   transition: width 1s;
@@ -118,7 +122,8 @@ aside > div {
 
 header {
   display: flex;
-  align-self: center;
+  align-content: center;
+  justify-content: space-between;
   text-align: center;
 }
 
@@ -134,13 +139,14 @@ header > #list-name {
 }
 
 #add-task-input {
-  flex-grow: 1;
+  margin-top: 0.2rem;
 }
 
 /* Section */
 
 section {
   display: flex;
+  margin-left: 10%;
 }
 
 section > ul {
@@ -183,14 +189,24 @@ section > ul > li {
 input {
   background-color: $base02;
   border: none;
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 5px;
 }
 
-.btn {color: $base01}
+input:focus {
+  
+}
+
+.btn {
+  color: $base01
+}
 
 .btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
     color: $orange;
     box-shadow: none;
 }
+
 
 
 /* When screen size is too small */

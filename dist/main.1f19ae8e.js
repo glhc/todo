@@ -506,8 +506,8 @@ var primaryColorMap = {
 };
 exports.primaryColorMap = primaryColorMap;
 var htmlSnippets = {
-  taskTemplate: "<li class='task'></div>",
-  taskTitle: "<div class='task-title col-8'>Task Title</div>",
+  taskTemplate: "\n      <li class='task'>\n      </div>",
+  taskTitle: "\n      <div class='task-title col-8'>\n        Task Title\n      </div>",
   taskDeleteButton: "<button class='btn col-1 material-icons' id='task-delete-button'>delete</button>",
   taskEditButton: "<button class='btn col-1 material-icons' id='task-edit-button'>edit</button>",
   taskUpdateButton: "<button class='btn task-update-button col-1>Update Task</button>",
@@ -600,9 +600,10 @@ exports.editTask = exports.appendTask = void 0;
 
 var style = require('./html-templates.js');
 
-var appendTask = function appendTask(selector, task) {
-  selector.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
+var appendTask = function appendTask(list, task) {
+  list.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
   $("#".concat(task.uuid)).append("<div class=\"task-title col-10 d-inline\">".concat(task.title, "</div>")); // put text into task element
+  //$(`${task.uuid}`).append(`<div id="task-button-container"></div>`);
 
   $("#".concat(task.uuid)).append(style.htmlSnippets.taskEditButton); // add edit button
 
@@ -667,11 +668,7 @@ function initializePage() {
   });
   $('#add-task-button').on('click', function () {
     var title = $('#add-task-input').val();
-    console.log('title:');
-    console.log(title);
     var createdTask = new structure.Task(title);
-    console.log('createdTask:');
-    console.log(createdTask);
     $('#add-task-input').val(''); // clear input field after enter
 
     utils.appendTask($('.task-list'), createdTask);
@@ -721,7 +718,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12604" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3525" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

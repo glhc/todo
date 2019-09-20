@@ -2,10 +2,11 @@
 
 const style = require('./html-templates.js')
 
-export const appendTask = function(selector, task) {
-  selector.append(`<li class='task-item' id='${task.uuid}'></li>`);
+export const appendTask = function(list, task) {
+  list.append(`<li class='task-item' id='${task.uuid}'></li>`);
   $(`#${task.uuid}`).append(`<div class="task-title col-10 d-inline">${task.title}</div>`); // put text into task element
-  
+  //$(`${task.uuid}`).append(`<div id="task-button-container"></div>`);
+
   $(`#${task.uuid}`).append(style.htmlSnippets.taskEditButton); // add edit button
   
   $(`#${task.uuid}`).append(style.htmlSnippets.taskDeleteButton); // add delete button

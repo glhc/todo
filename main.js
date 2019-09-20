@@ -23,8 +23,6 @@ $('document').ready(function () {
  */
 function initializePage() {
 
-
-
   // Add listener for submittal of changed task title.
   $('#add-task-input').on('keyup', function (e) {
     if (e.keyCode === 13) {
@@ -38,12 +36,7 @@ function initializePage() {
 
   $('#add-task-button').on('click', function () {
     let title = $('#add-task-input').val();
-    console.log('title:');
-    console.log(title);
-
     let createdTask = new structure.Task(title);
-    console.log('createdTask:')
-    console.log(createdTask);
 
     $('#add-task-input').val(''); // clear input field after enter
     utils.appendTask($('.task-list'), createdTask);
@@ -66,3 +59,4 @@ function listenForMenuButton() {
     $('.wrapper').toggleClass('pushed');
   });
 }
+
