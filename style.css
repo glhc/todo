@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:600&display=swap');
+/* Import fonts */
+/* Solarized thematic section */
+/* light is default mode, so pair with general html definition */
+ html, .dark {
+	 background-color: #002b36;
+	 color: #839496;
+}
+ html *, .dark * {
+	 color: #839496;
+}
+ html h1, .dark h1, html h2, .dark h2, html h3, .dark h3, html h4, .dark h4, html h5, .dark h5, html h6, .dark h6 {
+	 color: #93a1a1;
+	 border-color: #839496;
+}
+ html a, .dark a, html a:active, .dark a:active, html a:visited, .dark a:visited {
+	 color: #93a1a1;
+}
+ html a, .dark a, html a:active, .dark a:active, html a:visited, .dark a:visited, html code.url, .dark code.url {
+	 color: #d33682;
+}
+ html h1, .dark h1, html h2, .dark h2, html h3, .dark h3, html h4, .dark h4, html h5, .dark h5, html h6, .dark h6 {
+	 color: #d33682;
+}
+ .light {
+	 background-color: #fdf6e3;
+	 color: #657b83;
+}
+ .light * {
+	 color: #657b83;
+}
+ .light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+	 color: #586e75;
+	 border-color: #657b83;
+}
+ .light a, .light a:active, .light a:visited {
+	 color: #586e75;
+}
+/* start format */
+/* Body */
+ html {
+	 height: 100%;
+}
+ body {
+	 height: inherit;
+	 padding-left: 0 !important;
+	 margin-left: 0 !important;
+}
+/* Aside */
+ aside.pushed {
+	 width: 30%;
+}
+ aside {
+	 height: inherit;
+	 float: left;
+	 margin-left: 0;
+	 display: inline-flex;
+	 flex-direction: column;
+	 justify-content: flex-start;
+	 width: 0%;
+	 background-color: #002b36;
+	 transition: width 1s;
+	 background-color: #073642;
+	 overflow: hidden;
+}
+ #aside-menu-button {
+	 display: none;
+	 align-self: flex-end;
+	 margin-right: 1.2rem;
+}
+ aside > #aside-link-spacer {
+	 display: flex;
+	 font-family: 'Titillium Web', sans-serif;
+	 font-size: 1.3rem;
+	 text-indent: 1.5rem;
+	 flex-direction: column;
+	 justify-content: flex-end;
+	 padding: 3rem;
+	 padding-left: 1rem;
+}
+ aside.pushed > #aside-link-spacer {
+	 border: none;
+	 padding: 3rem;
+	 padding-left: 1rem;
+}
+ aside > div {
+	 overflow: hidden;
+	 width: 100rem;
+}
+ #inline-icon {
+	 vertical-align: middle;
+	 align-self: right;
+	 font-size: 36px;
+}
+/* Wrapper */
+ .wrapper {
+	 transition: width 1s;
+}
+/* Header */
+ header {
+	 display: flex;
+	 align-content: center;
+	 justify-content: space-between;
+	 text-align: center;
+}
+ header > #nav-button-icons {
+	 justify-content: flex-end;
+}
+ header > #list-name {
+	 display: flex;
+	 align-self: center;
+	 text-align: center;
+}
+ #add-task-input {
+	 margin-top: 0.2rem;
+}
+/* Section */
+ section {
+	 display: flex;
+	 margin-left: 10%;
+}
+ section > ul {
+	 display: flex;
+	 justify-content: space-between;
+	 flex-direction: column;
+	 list-style-type: none;
+}
+ section > ul > li {
+	 display: flex;
+}
+ #task-area > ul {
+	 width: 10000px;
+}
+ #task-list {
+	 width: max-content;
+}
+ #task-area > ul > li > button {
+	 align-self: flex-end;
+	 padding-inline-end: 1rem;
+}
+ #task-delete-button {
+	 background-color: transparent;
+	 border-style: none;
+	 border-color: none;
+}
+ #task-edit-button {
+	 background-color: transparent;
+	 border-style: none;
+	 border-color: none;
+}
+/* General Theming */
+ input {
+	 background-color: #073642;
+	 border: none;
+	 border-radius: 5px;
+	 padding: 2px;
+	 padding-left: 5px;
+}
+ .btn {
+	 color: #586e75;
+}
+ .btn:hover, .btn:focus, .btn:active, .btn.active, .open > .dropdown-toggle.btn {
+	 color: #cb4b16;
+	 box-shadow: none;
+}
+/* When screen size is too small */
+ @media (max-width: 767.98px) {
+	/* Display inner menu button */
+	 aside {
+		 position: absolute;
+		 width: 0%;
+		 z-index: 2000;
+	}
+	 aside.pushed {
+		 width: 50%;
+	}
+	 #aside-menu-button {
+		 display: flex;
+	}
+}
+ 
