@@ -14,7 +14,7 @@ const style = require('./html-templates.js')
  * @param {String} list - The name of the list which this task belongs to.
  * Defaults to inbox.
  */
-export const Task = function (title) {
+exports.Task = function (title) {
   this.title = title;
   this.uuid = shortid.generate();
 };
@@ -28,7 +28,7 @@ export const Task = function (title) {
 * @param {String} color - The color to be selected, e.g. 'yellow'.
 * Defaults to a random color from primaryColorList.
 */
-export const List = function (name, color) {
+exports.List = function (name, color) {
   this.name = name;
   this.uuid = shortid.generate();
   this.tasks = [];
@@ -36,18 +36,18 @@ export const List = function (name, color) {
   // If list color wasn't selected, pick one from themese at random
   if (!color) {
     let colorNames = Object.keys(style.primaryColorMap);
-    randomColorIndex = Math.floor(colorNames.length * Math.random());
+    let randomColorIndex = Math.floor(colorNames.length * Math.random() * 10);
     this.color =
-      style.primaryColorList(randomColorIndex);
+      style.primaryColorMap[randomColorIndex];
   } else {
     this.color = color;
   }
 
-  this.addTask = function() {
-    this.tasks.add(new Task());
+  this.addTask = function (title) {
+    this.tasks.push(new exports.Task(title));
   };
 
-  this.deleteTask = function(uuid) {
+  this.deleteTask = function (uuid) {
     let taskIndex = this.findTaskByUuid(uuid);
 
     // If a hit was found, then delete that item from the array 
@@ -58,12 +58,22 @@ export const List = function (name, color) {
       // Sanity checks
       if (deletedContent) {
         console.error(`No items found in list: ${this.name} with ` +
-            `UUID: ${uuid}`);
+          `UUID: ${uuid}`);
       } else if (deletedContent.length > 1) {
         console.error(`Accidentally deleted ${deletedContent.length} items.`)
       } else if (deletedContent) {
         console.log(`Task was deleted from this list. ` +
-        `UUID: ${this.tasks[i].uuid}`);
+          `UUID: ${this.tasks[i].uuid}`);
+      }
+    };
+    // Returns index position of task given by uuid.
+    this.findTaskByUuid = function (uuid) {
+      for (let i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].uuid === uuid) {
+          return i;
+        } else {
+          return null;
+        }
       }
     }
   }

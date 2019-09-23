@@ -490,11 +490,7 @@ module.exports = require('./lib/index');
 'use strict';
 /** Probably move this off to a module later */
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.htmlSnippets = exports.primaryColorMap = void 0;
-var primaryColorMap = {
+exports.primaryColorMap = {
   yellow: '#b58900',
   orange: '#cb4b16',
   red: '#dc322f',
@@ -504,8 +500,7 @@ var primaryColorMap = {
   cyan: '#2aa198',
   green: '#859900'
 };
-exports.primaryColorMap = primaryColorMap;
-var htmlSnippets = {
+exports.htmlSnippets = {
   taskTemplate: "\n      <li class='task'>\n      </div>",
   taskTitle: "\n      <div class='task-title col-8'>\n        Task Title\n      </div>",
   taskDeleteButton: "<button class='btn col-1 material-icons' id='task-delete-button'>delete</button>",
@@ -514,14 +509,8 @@ var htmlSnippets = {
   taskAddButton: "<div class='task-add-button col-1>Add Task</div>",
   taskEditSearchBar: "<input class=\"col-10 d-inline\" type=\"text\" minlength=\"1\" id=\"edit-task-input\" placeholder=\"New description goes here\">"
 };
-exports.htmlSnippets = htmlSnippets;
 },{}],"utils/constructors.js":[function(require,module,exports) {
 'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.List = exports.Task = void 0;
 
 var shortid = require('shortid');
 
@@ -539,7 +528,7 @@ var style = require('./html-templates.js');
  */
 
 
-var Task = function Task(title) {
+exports.Task = function (title) {
   this.title = title;
   this.uuid = shortid.generate();
 };
@@ -552,23 +541,21 @@ var Task = function Task(title) {
 */
 
 
-exports.Task = Task;
-
-var List = function List(name, color) {
+exports.List = function (name, color) {
   this.name = name;
   this.uuid = shortid.generate();
   this.tasks = []; // If list color wasn't selected, pick one from themese at random
 
   if (!color) {
     var colorNames = Object.keys(style.primaryColorMap);
-    randomColorIndex = Math.floor(colorNames.length * Math.random());
-    this.color = style.primaryColorList(randomColorIndex);
+    var randomColorIndex = Math.floor(colorNames.length * Math.random() * 10);
+    this.color = style.primaryColorMap[randomColorIndex];
   } else {
     this.color = color;
   }
 
-  this.addTask = function () {
-    this.tasks.add(new Task());
+  this.addTask = function (title) {
+    this.tasks.push(new exports.Task(title));
   };
 
   this.deleteTask = function (uuid) {
@@ -586,21 +573,26 @@ var List = function List(name, color) {
         console.log("Task was deleted from this list. " + "UUID: ".concat(this.tasks[i].uuid));
       }
     }
+
+    ; // Returns index position of task given by uuid.
+
+    this.findTaskByUuid = function (uuid) {
+      for (var _i = 0; _i < this.tasks.length; _i++) {
+        if (this.tasks[_i].uuid === uuid) {
+          return _i;
+        } else {
+          return null;
+        }
+      }
+    };
   };
 };
-
-exports.List = List;
 },{"shortid":"node_modules/shortid/index.js","./html-templates.js":"utils/html-templates.js"}],"utils/utils.js":[function(require,module,exports) {
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.editTask = exports.appendTask = void 0;
-
 var style = require('./html-templates.js');
 
-var appendTask = function appendTask(list, task) {
+exports.appendTask = function (list, task) {
   list.append("<li class='task-item' id='".concat(task.uuid, "'></li>"));
   $("#".concat(task.uuid)).append("<div class=\"task-title col-10 d-inline\">".concat(task.title, "</div>")); // put text into task element
   //$(`${task.uuid}`).append(`<div id="task-button-container"></div>`);
@@ -628,13 +620,9 @@ var appendTask = function appendTask(list, task) {
   });
 };
 
-exports.appendTask = appendTask;
-
-var editTask = function editTask(selector, task) {
+exports.editTask = function (selector, task) {
   $("#".concat(task.uuid)).html(style.htmlSnippets.taskEditSearchBar);
 };
-
-exports.editTask = editTask;
 },{"./html-templates.js":"utils/html-templates.js"}],"main.js":[function(require,module,exports) {
 'use strict';
 
@@ -656,7 +644,8 @@ $('document').ready(function () {
  */
 
 function initializePage() {
-  // Add listener for submittal of changed task title.
+  var Inbox = new structure.List('Inbox'); // Add listener for submittal of changed task title.
+
   $('#add-task-input').on('keyup', function (e) {
     if (e.keyCode === 13) {
       var title = $('#add-task-input').val();
@@ -718,7 +707,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12562" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12914" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

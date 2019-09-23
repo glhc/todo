@@ -23,6 +23,8 @@ $('document').ready(function () {
  */
 function initializePage() {
 
+let Inbox = new structure.List('Inbox');
+
   // Add listener for submittal of changed task title.
   $('#add-task-input').on('keyup', function (e) {
     if (e.keyCode === 13) {

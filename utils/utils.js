@@ -2,7 +2,7 @@
 
 const style = require('./html-templates.js')
 
-export const appendTask = function(list, task) {
+exports.appendTask = function(list, task) {
   list.append(`<li class='task-item' id='${task.uuid}'></li>`);
   $(`#${task.uuid}`).append(`<div class="task-title col-10 d-inline">${task.title}</div>`); // put text into task element
   //$(`${task.uuid}`).append(`<div id="task-button-container"></div>`);
@@ -28,6 +28,6 @@ export const appendTask = function(list, task) {
   });
 }
 
-export const editTask = function(selector, task) {
+exports.editTask = function(selector, task) {
   $(`#${task.uuid}`).html(style.htmlSnippets.taskEditSearchBar);
 }

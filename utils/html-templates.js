@@ -1,7 +1,7 @@
 'use strict';
 
 /** Probably move this off to a module later */
-export const primaryColorMap = {
+exports.primaryColorMap = {
   yellow: '#b58900',
   orange: '#cb4b16',
   red: '#dc322f',
@@ -12,7 +12,7 @@ export const primaryColorMap = {
   green: '#859900',
 };
 
-export const htmlSnippets = {
+exports.htmlSnippets = {
   taskTemplate: `
       <li class='task'>
       </div>`,
