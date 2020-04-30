@@ -16,7 +16,7 @@
   "dependencies": {
     "bootstrap-solarized-theme": "^1.0.3",
     "jest": "^24.9.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsdoc": "^3.6.3",
     "material-design-icons-iconfont": "^5.0.1",
     "moment": "^2.24.0",
