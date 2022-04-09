@@ -19,7 +19,7 @@
     "jquery": "^3.4.1",
     "jsdoc": "^3.6.3",
     "material-design-icons-iconfont": "^5.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "parcel": "^1.12.4",
     "shortid": "^2.2.15",
     "uuid": "^3.3.3"
